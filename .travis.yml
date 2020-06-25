@@ -1,15 +1,15 @@
-arch: amd64
+arch: s390x
 services:
   - docker
 script: 
-    docker build -t zmicroservicesdvm -f Dockerfile .
+    docker build -t zmicroservicesdvmz -f Dockerfile .
 before_deploy:
-    - docker tag  zmicroservicesdvm  "$DOCKER_USERNAME"/zmicroservicesdvm:latest
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" 
+    - docker tag  zmicroservicesdvmz  "$DOCKER_USERNAME"/zmicroservicesdvmz:latest
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin 
 deploy:
   provider: script
   script: 
-     docker push "$DOCKER_USERNAME"/zmicroservicesdvm:latest
+     docker push "$DOCKER_USERNAME"/zmicroservicesdvmz:latest
   on:
     branch: master  
 notifications:
